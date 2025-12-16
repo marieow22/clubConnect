@@ -108,20 +108,20 @@ class _LoginState extends State<Login> {
                       ),
                       SizedBox(height: 90.0),
                       TextFormField(
-                        controller: schoolEmail,
-                        decoration: InputDecoration(
-                          labelText: 'School Email',
-                          labelStyle: TextStyle(
-                            color: Colors.black,
-                            fontSize: 20.0,
+                          controller: schoolEmail,
+                          decoration: InputDecoration(
+                            labelText: 'School Email',
+                            labelStyle: TextStyle(
+                              color: Colors.black,
+                              fontSize: 20.0,
+                            ),
+                            fillColor: Colors.white,
+                            filled: true,
+                            border: OutlineInputBorder(),
+                            focusedBorder: OutlineInputBorder(
+                              borderSide: BorderSide(color: Colors.black),
+                            ),
                           ),
-                          fillColor: Colors.white,
-                          filled: true,
-                          border: OutlineInputBorder(),
-                          focusedBorder: OutlineInputBorder(
-                            borderSide: BorderSide(color: Colors.black),
-                          ),
-                        ),
                           validator: (value) {
                             if (value == null || value.isEmpty) {
                               return 'Please enter your school email';
@@ -131,20 +131,20 @@ class _LoginState extends State<Login> {
                       ),
                       SizedBox(height: 20.0),
                       TextFormField(
-                        controller: password,
-                        decoration: InputDecoration(
-                          labelText: 'Password',
-                          labelStyle: TextStyle(
-                            color: Colors.black,
-                            fontSize: 20.0,
+                          controller: password,
+                          decoration: InputDecoration(
+                            labelText: 'Password',
+                            labelStyle: TextStyle(
+                              color: Colors.black,
+                              fontSize: 20.0,
+                            ),
+                            fillColor: Colors.white,
+                            filled: true,
+                            border: OutlineInputBorder(),
+                            focusedBorder: OutlineInputBorder(
+                              borderSide: BorderSide(color: Colors.black),
+                            ),
                           ),
-                          fillColor: Colors.white,
-                          filled: true,
-                          border: OutlineInputBorder(),
-                          focusedBorder: OutlineInputBorder(
-                            borderSide: BorderSide(color: Colors.black),
-                          ),
-                        ),
                           validator: (value) {
                             if (value == null || value.isEmpty) {
                               return 'Please enter your password';
