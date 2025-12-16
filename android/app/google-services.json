@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "989755806238",
+    "project_id": "club-connect-528fd",
+    "storage_bucket": "club-connect-528fd.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:989755806238:android:b27086ed4aaf0dba67d40f",
+        "android_client_info": {
+          "package_name": "com.example.club_connect"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "989755806238-rhu3adet4evfmfg7dr64ka8lqljp7v9b.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBqf2ILBkGg24RSSTezt9vDOrF1iNbsw3Q"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "989755806238-rhu3adet4evfmfg7dr64ka8lqljp7v9b.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
