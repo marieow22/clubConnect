@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:google_sign_in/google_sign_in.dart';
 import '../classes/enums.dart';
 
 class Register extends StatefulWidget {
@@ -19,6 +20,30 @@ class _RegisterState extends State<Register> {
   final TextEditingController lastName = TextEditingController();
   final TextEditingController schoolEmail = TextEditingController();
   final TextEditingController password = TextEditingController();
+
+  // 1. Create the GoogleSignIn instance
+  final GoogleSignIn _googleSignIn = GoogleSignIn();
+
+  // 2. Define the Sign-In function
+  Future<void> _signInWithGoogle() async {
+    try {
+      // Triggers the popup where the user selects their account
+      final googleUser = await _googleSignIn.signIn();
+
+      if (googleUser != null) {
+        // Sign-in was successful!
+        print('Signed in as: ${googleUser.displayName}');
+        print('Email: ${googleUser.email}');
+
+        // Navigate to the home screen
+        if (mounted) {
+          Navigator.pushNamed(context, '/home');
+        }
+      }
+    } catch (error) {
+      print('Google Sign-In failed: $error');
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -78,20 +103,20 @@ class _RegisterState extends State<Register> {
                       ),
                       SizedBox(height: 40.0),
                       TextFormField(
-                        controller: firstName,
-                        decoration: InputDecoration(
-                          labelText: 'First Name',
-                          labelStyle: TextStyle(
-                            color: Colors.black,
-                            fontSize: 20.0,
+                          controller: firstName,
+                          decoration: InputDecoration(
+                            labelText: 'First Name',
+                            labelStyle: TextStyle(
+                              color: Colors.black,
+                              fontSize: 20.0,
+                            ),
+                            fillColor: Colors.white,
+                            filled: true,
+                            border: OutlineInputBorder(),
+                            focusedBorder: OutlineInputBorder(
+                              borderSide: BorderSide(color: Colors.black),
+                            ),
                           ),
-                          fillColor: Colors.white,
-                          filled: true,
-                          border: OutlineInputBorder(),
-                          focusedBorder: OutlineInputBorder(
-                            borderSide: BorderSide(color: Colors.black),
-                          ),
-                        ),
                           validator: (value) {
                             if (value == null || value.isEmpty) {
                               return 'Please enter your first name';
@@ -142,6 +167,9 @@ class _RegisterState extends State<Register> {
                             if (value == null || value.isEmpty) {
                               return 'Please enter your school email';
                             }
+                            if (!value.contains('@') || !value.contains('.')) {
+                              return 'Please enter a valid email address';
+                            }
                             return null;
                           }
                       ),
@@ -164,6 +192,9 @@ class _RegisterState extends State<Register> {
                           validator: (value) {
                             if (value == null || value.isEmpty) {
                               return 'Please enter your password';
+                            }
+                            if (value.length < 6) {
+                              return 'Password must be at least 6 characters';
                             }
                             return null;
                           }
@@ -197,34 +228,38 @@ class _RegisterState extends State<Register> {
                           ),
                         ],
                       ),
-                      Container(
+                      SizedBox(height: 20.0),
+                      SizedBox(
                         width: double.infinity,
-                        decoration: BoxDecoration(
-                          color: Colors.white,
-                          border: Border.all(
-                            color: Colors.black,
+                        child: OutlinedButton(
+                          onPressed: _signInWithGoogle, // 3. Link the function here
+                          style: OutlinedButton.styleFrom(
+                            backgroundColor: Colors.white,
+                            side: BorderSide(color: Colors.black),
+                            shape: RoundedRectangleBorder(
+                              borderRadius: BorderRadius.circular(10.0),
+                            ),
+                            padding: const EdgeInsets.symmetric(vertical: 13.0),
                           ),
-                          borderRadius: BorderRadius.circular(10.0),
-                        ),
-                        padding: const EdgeInsets.symmetric(vertical: 10.0,horizontal: 10.0),
-                        child: Row(
-                          mainAxisAlignment: MainAxisAlignment.spaceAround,
-                          children: [
-                            SizedBox(
-                              height: 30.0,
-                              child: Image.asset('assets/pictures/googleIcon.png'),
-                            ),
-                            Text(
-                              'Sign In With Google',
-                              style: TextStyle(
-                                color: Colors.black,
-                                fontSize: 18.0,
+                          child: Row(
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            children: [
+                              SizedBox(
+                                height: 30.0,
+                                child: Image.asset('assets/pictures/googleIcon.png'),
                               ),
-                            ),
-                          ],
+                              SizedBox(width: 15.0),
+                              Text(
+                                'Sign In With Google',
+                                style: TextStyle(
+                                  color: Colors.black,
+                                  fontSize: 18.0,
+                                ),
+                              ),
+                            ],
+                          ),
                         ),
                       ),
-
                       SizedBox(height: 100.0),
                       Center(
                         child: ElevatedButton(
