@@ -24,5 +24,5 @@ class UserModel {
     required this.role,
     this.clubDate,
     this.updatedClub,
-});
+  });
 }
