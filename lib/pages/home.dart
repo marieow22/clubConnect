@@ -21,14 +21,14 @@ class _HomeState extends State<Home> {
     final uid = FirebaseAuth.instance.currentUser!.uid;
 
     final doc = await FirebaseFirestore.instance
-        .collection('students') // or 'users' if that’s your collection
+        .collection('students')
         .doc(uid)
         .get();
 
     if (doc.exists) {
       setState(() {
         userName = doc.data()?['name'];
-        photoUrl = doc.data()?['photoUrl']; // optional
+        photoUrl = doc.data()?['photoUrl'];
       });
     }
   }
@@ -54,6 +54,29 @@ class _HomeState extends State<Home> {
             },
             icon: Icon(Icons.menu),
           ),
+        ),
+      ),
+      body: SafeArea(
+        child: Container(
+          width: double.infinity,
+            padding: EdgeInsets.only(top: 20),
+          child: Column(
+            children: [
+              SizedBox(height: 25.0),
+              CircleAvatar(
+                radius: 40,
+                child: Icon(Icons.person, size: 40),
+              ),
+              SizedBox(height: 16),
+              Text(
+                userName ?? 'Loading...',
+                style: TextStyle(
+                  fontSize: 22,
+                  fontWeight: FontWeight.bold,
+                ),
+              ),
+            ],
+          )
         ),
       ),
       extendBodyBehindAppBar: true,
