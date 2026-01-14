@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:googleapis/areainsights/v1.dart';
 
 class Clubs extends StatefulWidget {
   const Clubs({super.key});
@@ -13,6 +14,15 @@ class _ClubsState extends State<Clubs> {
     return Scaffold(
       backgroundColor: Colors.white,
       appBar: AppBar(
+        title: Text(
+          'Clubs that are Available',
+          style: TextStyle(
+            fontSize: 15.0,
+            fontWeight: FontWeight.bold,
+            fontStyle: FontStyle.italic,
+          ),
+        ),
+        centerTitle: true,
         backgroundColor: Color(0xFFFFDC79),
         elevation: 0,
         leading: Builder(
@@ -141,6 +151,29 @@ class _ClubsState extends State<Clubs> {
             ),
           ],
         ),
+      ),
+      body: GridView.count(
+        crossAxisCount: 4,
+          crossAxisSpacing: 3,
+          mainAxisSpacing: 3,
+        children: [
+          GestureDetector(
+            onTap: () {
+              'Joined Club!';
+            },
+            child: Container(
+            width: 120,
+              height: 120,
+              decoration: BoxDecoration(
+                color: Color(0xFF98662C),
+                shape: BoxShape.circle,
+              ),
+              Center()child: Text(
+                'Musical',
+              ),
+            ),
+          ),
+        ],
       ),
     );
   }
