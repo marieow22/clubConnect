@@ -15,7 +15,8 @@ class Home extends StatefulWidget {
 class _HomeState extends State<Home> {
 
   String? userName;
-  String? photoUrl;
+  String? photoURL;
+  String? school;
 
   Future<void> _loadUserProfile() async {
     final uid = FirebaseAuth.instance.currentUser!.uid;
@@ -28,7 +29,8 @@ class _HomeState extends State<Home> {
     if (doc.exists) {
       setState(() {
         userName = doc.data()?['name'];
-        photoUrl = doc.data()?['photoUrl'];
+        photoURL = doc.data()?['photoURL'];
+        school = doc.data()?['schoolId'];
       });
     }
   }
@@ -45,6 +47,13 @@ class _HomeState extends State<Home> {
     return Scaffold(
       backgroundColor: Colors.white,
       appBar: AppBar(
+        title: Text(
+          (school ?? 'Loading. . .').replaceAll('_', ' '),
+          style: const TextStyle(
+            fontSize: 15.0,
+            fontWeight: FontWeight.bold,
+          ),
+        ),
         backgroundColor: Color(0xFFFFDC79),
         elevation: 0,
         leading: Builder(
@@ -59,13 +68,14 @@ class _HomeState extends State<Home> {
       body: SafeArea(
         child: Container(
           width: double.infinity,
-            padding: EdgeInsets.only(top: 20),
+            padding: EdgeInsets.only(top: 15),
           child: Column(
             children: [
-              SizedBox(height: 25.0),
+              SizedBox(height: 20.0),
               CircleAvatar(
                 radius: 40,
-                child: Icon(Icons.person, size: 40),
+                backgroundImage: photoURL != null ? NetworkImage(photoURL!) : null,
+                child: photoURL == null ? Icon(Icons.person, size: 40) : null,
               ),
               SizedBox(height: 16),
               Text(
@@ -75,6 +85,10 @@ class _HomeState extends State<Home> {
                   fontWeight: FontWeight.bold,
                 ),
               ),
+              const Divider(
+                height: 60.0,
+                color: Colors.black,
+              )
             ],
           )
         ),
