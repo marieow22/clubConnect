@@ -1,0 +1,4 @@
+enum AppRole {
+  admin,
+  student
+}
