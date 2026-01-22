@@ -6,7 +6,7 @@ import 'package:club_connect/Calendars/studentcalendar.dart';
 import 'package:club_connect/students/attendance.dart';
 import 'package:club_connect/ChooseClubs/allClubs.dart';
 import 'package:club_connect/students/forgot_Password.dart';
-import 'package:club_connect/students/studenthome.dart';
+import 'package:club_connect/students/home.dart';
 import 'package:club_connect/students/student.dart';
 import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter/material.dart';
@@ -37,7 +37,7 @@ class MyApp extends StatelessWidget {
         '/': (context) => Login(role: AppRole.student),
         '/forgot_password': (context) => ForgotPassword(),
         '/register': (context) => Register(role: AppRole.student),
-        '/studenthome': (context) => Home(role: AppRole.student),
+        '/home': (context) => Home(role: AppRole.student),
         '/studentcalendar': (context) => Calendar(),
         '/attendance': (context) => Attendance(),
         '/allClubs': (context) => Clubs(),
