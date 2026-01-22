@@ -58,7 +58,7 @@ flutter_launcher_icons:
   android: true
   ios: false
   adaptive_icon_background: "#FFFFFF" # or transparent image
-  adaptive_icon_foreground: "assets/caticon_circle.png"
+  adaptive_icon_foreground: "assets/caticon_foreground"
 
 
 # For information on the generic Dart part of this file, see the
