@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 
 
@@ -12,13 +11,38 @@ class Clubs extends StatefulWidget {
 
 class _ClubsState extends State<Clubs> {
   final List<String> ClubNames = [
-    'Coding Club',
-    'Debate Club',
-    'Art Club',
-    'Music Club',
-    'Sports Club',
-    'Science Club',
-    'Literature Club',
+    'Musical',
+     'Art club',
+     'Chess club',
+     'Dance club',
+     'Choir',
+     'Debate club',
+     'Soccer club',
+     'Spanish club',
+     'Band club',
+     'Key club',
+     'Exchange club',
+     'STEM club',
+     'Cooking club',
+     'Anime club',
+     'Stuco club',
+     'Photographic club',
+     'Improv club',
+     'Ceramics club',
+     'Mathletes club',
+     'French club',
+     'Yearbook club',
+     'Fashion club',
+     'Book club',
+     'Robotics club',
+     'Tutoring club',
+     'Foreign languages club',
+     'Coding club',
+     'Poetry club',
+     'Film club',
+     'Humane Society Club',
+     'Tennis Club',
+     'Baseball Club',
   ];
 
   @override
@@ -165,7 +189,7 @@ class _ClubsState extends State<Clubs> {
             TextButton(
               onPressed: () async {
                 await FirebaseAuth.instance.signOut();
-                Navigator.pushNamedAndRemoveUntil(context, '/Home', (route) => false);
+                Navigator.pushNamedAndRemoveUntil(context, '/home', (route) => false);
                 },
               style: TextButton.styleFrom(
                 alignment: Alignment.centerLeft,
