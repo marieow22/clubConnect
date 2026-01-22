@@ -71,11 +71,23 @@ class _HomeState extends State<Home> {
             padding: EdgeInsets.only(top: 15),
           child: Column(
             children: [
-              SizedBox(height: 20.0),
-              CircleAvatar(
-                radius: 40,
-                backgroundImage: photoURL != null ? NetworkImage(photoURL!) : null,
-                child: photoURL == null ? Icon(Icons.person, size: 40) : null,
+               Container(
+                width: 80,
+                height: 80,
+                decoration: BoxDecoration(
+                  color: Colors.grey[300],
+                  shape: BoxShape.circle,
+                ),
+                clipBehavior: Clip.antiAlias,
+                child: (photoUrl != null && photoUrl!.isNotEmpty)
+                    ? Image.network(
+                        photoUrl!,
+                        fit: BoxFit.cover,
+                        errorBuilder: (context, error, stackTrace) {
+                          return const Icon(Icons.person, size: 40);
+                        },
+                      )
+                    : const Icon(Icons.person, size: 40),
               ),
               SizedBox(height: 16),
               Text(
@@ -88,6 +100,12 @@ class _HomeState extends State<Home> {
               const Divider(
                 height: 60.0,
                 color: Colors.black,
+              ),
+              const SizedBox(height: 15.0),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  ],
               )
             ],
           )
@@ -200,6 +218,34 @@ class _HomeState extends State<Home> {
                   SizedBox(width: 10),
                   Text(
                     'Clubs',
+                    style: TextStyle(
+                      color: Colors.black,
+                      fontSize: 25.0,
+                    ),
+                  ),
+                ],
+              ),
+            ),
+            const SizedBox(height: 100.0),
+            TextButton(
+              onPressed: () async {
+                await FirebaseAuth.instance.signOut();
+                Navigator.pushNamedAndRemoveUntil(context, '/home', (route) => false);;
+                },
+              style: TextButton.styleFrom(
+                alignment: Alignment.centerLeft,
+                padding: EdgeInsets.symmetric(vertical: 10.0, horizontal: 20.0),
+              ),
+              child: Row(
+                children: [
+                  Icon(
+                    Icons.logout,
+                    color: Colors.black,
+                    size: 25.0,
+                  ),
+                  SizedBox(width: 10),
+                  Text(
+                    'Sign Out',
                     style: TextStyle(
                       color: Colors.black,
                       fontSize: 25.0,
