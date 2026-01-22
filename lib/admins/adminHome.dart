@@ -119,7 +119,7 @@ class _adminhomeState extends State<adminhome> {
               const SizedBox(height: 65.0),
               TextButton(
                 onPressed: () {
-                  Navigator.pushNamed(context, '/adminhome');
+                   Navigator.pop(context);
                 },
                 style: TextButton.styleFrom(
                   alignment: Alignment.centerLeft,
@@ -146,7 +146,7 @@ class _adminhomeState extends State<adminhome> {
               const SizedBox(height: 1.0),
               TextButton(
                 onPressed: () {
-                  Navigator.pushNamed(context, '/adminCalendar');
+                  Navigator.pushReplacementNamed(context, '/adminCalendar');
                 },
                 style: TextButton.styleFrom(
                   alignment: Alignment.centerLeft,
@@ -173,7 +173,7 @@ class _adminhomeState extends State<adminhome> {
               const SizedBox(height: 1.0),
               TextButton(
                 onPressed: () {
-                  Navigator.pushNamed(context, '/manageAttendance');
+                  Navigator.pushReplacementNamed(context, '/manageAttendance');
                 },
                 style: TextButton.styleFrom(
                   alignment: Alignment.centerLeft,
@@ -201,7 +201,7 @@ class _adminhomeState extends State<adminhome> {
               TextButton(
                 onPressed: () async {
                   await FirebaseAuth.instance.signOut();
-                  Navigator.pushNamedAndRemoveUntil(context, '/Admin', (route) => false);
+                  Navigator.pushNamedAndRemoveUntil(context, '/admin', (route) => false);
                   },
                 style: TextButton.styleFrom(
                   alignment: Alignment.centerLeft,
