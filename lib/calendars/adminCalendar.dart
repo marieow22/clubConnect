@@ -372,7 +372,7 @@ class _admincalendarState extends State<admincalendar> {
             TextButton(
               onPressed: () async {
                 await FirebaseAuth.instance.signOut();
-                Navigator.pushNamed(context, '/Admin');
+                Navigator.pushNamed(context, '/admin');
                 },
               style: TextButton.styleFrom(
                 alignment: Alignment.centerLeft,
